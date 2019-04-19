@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="250dp"
+            android:layout_height="33dp"
+            android:text="User Name"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="62dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="Logout"
+            android:text="Log out"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="276dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dashboard_info"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:text="You Have No Ongoing Presentation"
+            android:visibility="invisible"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="62dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

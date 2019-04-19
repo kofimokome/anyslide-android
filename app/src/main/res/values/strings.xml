@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AnySlide</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="hint_username">User Name</string>
+    <string name="hint_password"> Password</string>
+    <string name="api_root">https://anyslide.000webhostapp.com/api/</string>
+    <string name="next_slide">Next Slide</string>
+    <string name="prev_slide">Prev Slide</string>
+    <string name="controller_info">Click On The Buttons Below To Control Your Slide</string>
+
+
+</resources>
