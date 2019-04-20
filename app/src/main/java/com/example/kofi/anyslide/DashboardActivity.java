@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.nkzawa.emitter.Emitter;
 
@@ -20,15 +21,49 @@ import org.w3c.dom.Text;
 public class DashboardActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
-
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
         sharedPreferences = getSharedPreferences("anyslide", MODE_PRIVATE);
-        int id = sharedPreferences.getInt("id", 0);
+        id = sharedPreferences.getInt("id", 0);
 
+        getOngoingPresentations();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        sharedPreferences = getSharedPreferences("anyslide", MODE_PRIVATE);
+        id = sharedPreferences.getInt("id", 0);
+
+        getOngoingPresentations();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        SocketService.disconnect();
+    }
+
+
+    public void Logout(View view) {
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        prefsEditor.putInt("id", 0);
+        prefsEditor.putString("username", null);
+        prefsEditor.apply();
+
+        SocketService.disconnect();
+        startActivity(new Intent(this, LoginActivity.class));
+
+    }
+
+    public void getOngoingPresentations(){
         final LinearLayout parent_layout = (LinearLayout) findViewById(R.id.parent_layout);
         final TextView dashboard_info = (TextView) findViewById(R.id.dashboard_info);
 
@@ -45,8 +80,12 @@ public class DashboardActivity extends AppCompatActivity {
                     public void run() {
                         JSONArray presentations = (JSONArray) args[0];
                         //System.out.println(args[0]);
-                        if(presentations.length() <=0){
+                        parent_layout.removeAllViews();
+                        if (presentations.length() <= 0) {
                             dashboard_info.setVisibility(View.VISIBLE);
+                        } else {
+                            dashboard_info.setVisibility(View.INVISIBLE);
+                            //Toast.makeText(DashboardActivity.this, "Ongoing Presentations Have Been Updated", Toast.LENGTH_SHORT).show();
                         }
                         try {
                             for (int i = 0; i < presentations.length(); i++) {
@@ -88,22 +127,5 @@ public class DashboardActivity extends AppCompatActivity {
             }
         };
         SocketService.getSocket().on("presentations", onGetPresentations);
-    }
-
-    public void onDestroy() {
-        super.onDestroy();
-
-        SocketService.disconnect();
-    }
-
-    public void Logout(View view) {
-        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-        prefsEditor.putInt("id", 0);
-        prefsEditor.putString("username", null);
-        prefsEditor.apply();
-
-        SocketService.disconnect();
-        startActivity(new Intent(this, LoginActivity.class));
-
     }
 }
