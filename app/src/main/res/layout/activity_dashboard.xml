@@ -46,8 +46,7 @@
             android:layout_height="63dp"
             android:layout_marginTop="20dp"
             android:textSize="20sp"
-            android:text="You Have No Ongoing Presentation"
-            android:visibility="invisible"
+            android:text="@string/loading"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="62dp" />
 

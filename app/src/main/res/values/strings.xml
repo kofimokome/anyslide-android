@@ -7,6 +7,7 @@
     <string name="next_slide">Next Slide</string>
     <string name="prev_slide">Prev Slide</string>
     <string name="controller_info">Click On The Buttons Below To Control Your Slide</string>
+    <string name="loading">Loading &#8230; Please Wait</string>
 
 
 </resources>

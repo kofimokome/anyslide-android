@@ -82,6 +82,7 @@ public class DashboardActivity extends AppCompatActivity {
                         //System.out.println(args[0]);
                         parent_layout.removeAllViews();
                         if (presentations.length() <= 0) {
+                            dashboard_info.setText("You Have No Ongoing Presentation");
                             dashboard_info.setVisibility(View.VISIBLE);
                         } else {
                             dashboard_info.setVisibility(View.INVISIBLE);
